@@ -31,10 +31,18 @@ class CustomUser(AbstractUser):
     date_of_birth = models.DateField(null=True, blank=True)
     profile_photo = models.ImageField(upload_to='profile_photos/', null=True, blank=True)
 
+    
+class Article(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
     class Meta:
-        permissions = [
-            ("create", "can create Posts"),
-            ("view", "can view Books"),
-            ("edit", "can edit Books"),
-            ("delete", "can delete Books")
-        ]
+        permissions=[
+            ('can_view', 'can view article'),
+            ('can_create', 'can create article'),
+            ('can_edit', 'can edit article'),
+            ('can_delete', 'can delete article'),
+        ]   
+    
+ 
