@@ -15,4 +15,4 @@ class UserAdmin(CustomUserAdmin):
     pass
 
 
-admin.site.register(User, UserAdmin, Book)
+admin.site.register(CustomUser, CustomUserAdminUserAdmin, Book)
