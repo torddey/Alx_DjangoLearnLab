@@ -10,7 +10,7 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
-class UserManager(BaseUserManager):
+class CustomUserManager(BaseUserManager):
     def create_user(self, email, password):
         if not email:
             raise ValueError("User must have an email")
