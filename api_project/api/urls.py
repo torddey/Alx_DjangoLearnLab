@@ -7,5 +7,6 @@ urlpatterns = [
         "books/", 
         BookListCreateAPIView.as_view(), 
         name="book_list_create_view",
+        path('api/', include("api.urls"))
     )
 ]
