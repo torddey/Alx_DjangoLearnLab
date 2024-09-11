@@ -23,6 +23,6 @@ def base(request):
     return render(request, "base.html")
 
 def blog_posts(request):
-    posts = Post.objects.all()
+    posts = post.objects.all()
     return render(request, "blog/blog_posts.html", {"posts":posts})
 
