@@ -26,7 +26,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             last_name=validated_data['last_name']
         )
         user.set_password(validated_data['password'])
-        user.save()
+        user = User.objects.create_user()
         return user
 
 class UserLoginSerializer(serializers.Serializer):
