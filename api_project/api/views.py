@@ -2,7 +2,7 @@ from django_filters import rest_framework
 from rest_framework import generics, filters
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from .models import Book
-from .seriealizers import BookSerializer
+from .serializers import BookSerializer
 
 class CustomBookListView(generics.ListAPIView):
     serializer_class = BookSerializer
