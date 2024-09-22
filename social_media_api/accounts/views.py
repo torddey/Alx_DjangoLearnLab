@@ -1,6 +1,10 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import get_object_or_404
+from .models import CustomUser
 from django.contrib.auth import authenticate
 from .serializers import UserRegistrationSerializer, UserLoginSerializer
 
@@ -34,3 +38,21 @@ class UserLoginView(generics.GenericAPIView):
                 "token": token.key
             })
         return Response({"error": "Invalid Credentials"}, status=status.HTTP_400_BAD_REQUEST)
+
+#follows the user with a specific user_id
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def follow_user(request, user_id):
+    user_to_follow = get_objects_or_404(CustomUser, id=user_id)
+    if request.user != user_to_follow:
+        request.user.following.add(user_to_follow)
+        return Response({'status': 'now following'}, status=status.HTTP_200_OK)
+    return Response({'status': 'cannot follow self'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view
+@permission_classes([IsAuthenticated])
+def unfollow_user(request, user_id):
+    user_to_follow = get_object_or_404(CustomUser, id=user_id)
+    request.user.following.remove(user_to_follow)
+    return Response({'status': 'unfolloed'}, status=status.HTTP_200_OK)
