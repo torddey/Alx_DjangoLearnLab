@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'rest_framework',
-    'posts'
+    'posts',
+    'notifications',
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
