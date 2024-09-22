@@ -42,8 +42,8 @@ def feed(request):
 @api_view(['POST'])
 @permission_classes(['IsAuthenticated'])
 def like_post(request, pk):
-    post = get_object_or_404(post, pk=pk)
-    like_created = like.objects.get_or_created(user=requedt.user, post=like_post)
+    post = generics.get_object_or_404(post, pk=pk)
+    like_created = like.objects.get_or_created(user=request.user, post=post)
     if created:
          Notification.objects.create(
             recipient=post.author,
