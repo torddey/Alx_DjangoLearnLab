@@ -43,7 +43,7 @@ def feed(request):
 @permission_classes(['IsAuthenticated'])
 def like_post(request, pk):
     post = generics.get_object_or_404(Post, pk=pk)
-    like_created = Like.objects.get_or_created(user=request.user, post=post)
+    like_created = Like.objects.get_or_create(user=request.user, post=post)
     if created:
          Notification.objects.create(
             recipient=post.author,
