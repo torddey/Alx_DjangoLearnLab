@@ -42,7 +42,7 @@ class UserLoginView(generics.GenericAPIView):
 #follows the user with a specific user_id
 @api_view(['POST'])
 def follow_user(request, user_id):
-    permission.IsAuthenticated
+    permissions.IsAuthenticated
     user_to_follow = get_objects_or_404(CustomUser, id=user_id)
     if request.user != user_to_follow:
         request.user.following.add(user_to_follow)
