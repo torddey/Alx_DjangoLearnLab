@@ -1,1 +1,1 @@
-Intro to Django
+Intro to Python Django and RESTApi
